@@ -640,7 +640,6 @@
             </div>
         </div>
 
-        <!-- آیدی‌های سریع -->
         <div class="quick-ids">
             <div class="id-chip" data-copy="@kingok_2">
                 ✈️ <span>@kingok_2</span>
@@ -685,7 +684,6 @@
             </div>
         </div>
 
-        <!-- لینک‌های شما -->
         <div class="links-container">
             <a href="https://t.me/kingok_2" target="_blank" class="link-btn btn-telegram">
                 ✈️ تلگرام (kingok_2)
@@ -937,9 +935,9 @@
                     </div>
                     <div class="music-player-row">
                         <audio controls class="music-player">
-                            <source src="music/${song.file}" type="audio/mpeg">
+                            <source src="${song.file}" type="audio/mpeg">
                         </audio>
-                        <a href="music/${song.file}" download="${song.title}.mp3" class="download-btn" title="دانلود">⬇</a>
+                        <a href="${song.file}" download="${song.title}.mp3" class="download-btn" title="دانلود">⬇</a>
                     </div>
                 `;
                 musicListContainer.appendChild(musicItem);
@@ -950,4 +948,4 @@
         loadMusic();
     </script>
 </body>
-</html>
+    </html>
