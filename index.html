@@ -16,17 +16,24 @@
     <meta property="og:description" content="پنل شخصی محمد رضا - برنامه‌نویس و طراح وب">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mohammadraza22.github.io/my-website">
-    <meta property="og:image" content="https://mohammadraza22.github.io/my-website/preview.jpg">
+    <meta property="og:image" content="https://mohammadraza22.github.io/my-website/icon-512.png">
     <meta property="og:locale" content="fa_IR">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mohammadraza | پنل شخصی حرفه‌ای">
     <meta name="twitter:description" content="پنل شخصی محمد رضا - برنامه‌نویس و طراح وب">
-    <meta name="twitter:image" content="https://mohammadraza22.github.io/my-website/preview.jpg">
+    <meta name="twitter:image" content="https://mohammadraza22.github.io/my-website/icon-512.png">
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#1e3a8a">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mohammadraza">
     
     <title>Mohammadraza | پنل شخصی حرفه‌ای</title>
     
@@ -995,6 +1002,15 @@
 
         searchMusic.addEventListener('input', (e) => loadMusic(e.target.value));
         loadMusic();
+
+        // ============ ۱۱. ثبت Service Worker (PWA) ============
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('✅ Service Worker ثبت شد'))
+                    .catch(err => console.log('❌ خطا:', err));
+            });
+        }
     </script>
 </body>
-                                                                                                  </html>
+    </html>
