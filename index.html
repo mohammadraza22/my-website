@@ -1259,23 +1259,37 @@
             fabMain.textContent = fabMenu.classList.contains('active') ? '×' : '+';
         });
 
-        // ============ ۱۰. موسیقی ============
-        // ============ ۱۰. موسیقی ============
-const myMusicList = [
-    { title: "آروم", file: "Arom.mp3" },
-    { title: "آهنگ بلوچ ۱", file: "balooch1.mp3" },
-    { title: "آهنگ بلوچ ۲", file: "balooch2.mp3" },
-    { title: "عمانی", file: "OmaniN.mp3" },
-    { title: "آهنگ سوم", file: "sab.mp3" },
-    ]; 
-
-];
-
+        // ============ ۱۰. موسیقی (با قابلیت بروزرسانی لحظه‌ای) ============
+        let myMusicList = [];
         const musicListContainer = document.getElementById('musicList');
         const searchMusic = document.getElementById('searchMusic');
         
-        document.getElementById('musicCountStat').textContent = myMusicList.length;
-        document.getElementById('musicCountBadge').textContent = myMusicList.length;
+        let lastMusicDataString = ''; // برای جلوگیری از رفرش بی‌مورد
+
+        async function fetchMusicList() {
+            try {
+                // اضافه کردن زمان به آدرس برای جلوگیری از کش شدن توسط مرورگر
+                const response = await fetch('music.json?v=' + new Date().getTime());
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                const dataString = JSON.stringify(data);
+
+                // فقط اگر لیست تغییر کرده باشد، صفحه را آپدیت کن
+                if (dataString !== lastMusicDataString) {
+                    lastMusicDataString = dataString;
+                    myMusicList = data;
+                    
+                    document.getElementById('musicCountStat').textContent = myMusicList.length;
+                    document.getElementById('musicCountBadge').textContent = myMusicList.length;
+                    
+                    loadMusic(searchMusic.value);
+                    console.log('✅ لیست موزیک‌ها بروزرسانی شد.');
+                }
+            } catch (error) {
+                console.error('❌ خطا در دریافت لیست موزیک:', error);
+            }
+        }
 
         function loadMusic(filter = '') {
             musicListContainer.innerHTML = '';
@@ -1292,34 +1306,4 @@ const myMusicList = [
                 const musicItem = document.createElement('div');
                 musicItem.className = 'music-item';
                 musicItem.innerHTML = `
-                    <div class="music-info">
-                        <p class="music-title">${song.title}</p>
-                        <p class="music-artist">${t('singer')}</p>
-                    </div>
-                    <div class="music-player-row">
-                        <audio controls class="music-player">
-                            <source src="${song.file}" type="audio/mpeg">
-                        </audio>
-                        <a href="${song.file}" download="${song.title}.mp3" class="download-btn" title="Download">⬇</a>
-                    </div>
-                `;
-                musicListContainer.appendChild(musicItem);
-            });
-        }
-
-        searchMusic.addEventListener('input', (e) => loadMusic(e.target.value));
-
-        // ============ ۱۱. ثبت Service Worker (PWA) ============
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('✅ Service Worker ثبت شد'))
-                    .catch(err => console.log('❌ خطا:', err));
-            });
-        }
-
-        // ============ راه‌اندازی اولیه ============
-        applyLanguage(currentLang);
-    </script>
-</body>
-    </html>
+                    <div cl
