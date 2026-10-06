@@ -139,6 +139,11 @@
             z-index: 10;
         }
 
+        html[dir="ltr"] .top-controls {
+            right: auto;
+            left: 15px;
+        }
+
         .icon-btn {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -162,6 +167,58 @@
         .icon-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
+        }
+
+        /* منوی زبان */
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 55px;
+            right: 15px;
+            background: var(--card-color);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 8px;
+            min-width: 140px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            z-index: 20;
+            animation: slideDown 0.3s ease;
+        }
+
+        html[dir="ltr"] .lang-menu {
+            right: auto;
+            left: 15px;
+        }
+
+        .lang-menu.active {
+            display: block;
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .lang-option:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        body.light-mode .lang-option:hover {
+            background: #e2e8f0;
+        }
+
+        .lang-option.active {
+            background: var(--accent);
+            color: white;
         }
 
         .datetime-display {
@@ -307,6 +364,10 @@
             text-align: right;
         }
 
+        html[dir="ltr"] .bio-section {
+            text-align: left;
+        }
+
         .bio-card {
             background: rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -403,6 +464,10 @@
             text-align: right;
         }
 
+        html[dir="ltr"] .music-section {
+            text-align: left;
+        }
+
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -479,6 +544,10 @@
             border-color: var(--accent);
         }
 
+        html[dir="ltr"] .music-item:hover {
+            transform: translateX(3px);
+        }
+
         .music-info { display: flex; flex-direction: column; gap: 2px; }
         .music-title { font-size: 14px; font-weight: bold; color: var(--text-color); margin: 0; }
         .music-artist { font-size: 12px; color: var(--text-muted); margin: 0; }
@@ -548,6 +617,10 @@
             animation: slideDown 0.4s ease;
         }
 
+        html[dir="ltr"] .contact-form {
+            text-align: left;
+        }
+
         body.light-mode .contact-form { background: #f8fafc; }
         .contact-form.active { display: flex; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -602,6 +675,8 @@
         .color-swatch.active { border-color: white; box-shadow: 0 0 15px rgba(255,255,255,0.5); }
 
         .fab { position: fixed; bottom: 25px; left: 25px; z-index: 100; }
+        html[dir="ltr"] .fab { left: auto; right: 25px; }
+
         .fab-main {
             width: 56px; height: 56px; border-radius: 50%;
             background: linear-gradient(45deg, #ec4899, #8b5cf6);
@@ -648,8 +723,24 @@
 
     <div class="profile-card">
         <div class="top-controls">
-            <button id="colorBtn" class="icon-btn" title="تغییر رنگ">🎨</button>
-            <button id="themeToggle" class="icon-btn" title="تغییر تم">🌙</button>
+            <button id="langBtn" class="icon-btn" title="Change Language">🌐</button>
+            <button id="colorBtn" class="icon-btn" title="Change Color">🎨</button>
+            <button id="themeToggle" class="icon-btn" title="Toggle Theme">🌙</button>
+        </div>
+
+        <div class="lang-menu" id="langMenu">
+            <div class="lang-option" data-lang="fa">
+                <span>🇮🇷</span> <span>فارسی</span>
+            </div>
+            <div class="lang-option" data-lang="en">
+                <span>🇬🇧</span> <span>English</span>
+            </div>
+            <div class="lang-option" data-lang="ar">
+                <span>🇸🇦</span> <span>العربية</span>
+            </div>
+            <div class="lang-option" data-lang="ru">
+                <span>🇷🇺</span> <span>Русский</span>
+            </div>
         </div>
 
         <div class="color-palette" id="colorPalette">
@@ -661,32 +752,32 @@
             <div class="color-swatch" data-color="sunset" style="background: #9a3412"></div>
         </div>
 
-        <div class="datetime-display" id="datetime">⏰ در حال بارگذاری...</div>
+        <div class="datetime-display" id="datetime">⏰ ...</div>
 
         <div class="avatar-wrapper">
             <div class="avatar" id="avatar">
                 <span id="avatarEmoji">👨‍💻</span>
             </div>
-            <label for="avatarUpload" class="avatar-edit" title="تغییر آواتار">📷</label>
+            <label for="avatarUpload" class="avatar-edit" title="Change Avatar">📷</label>
             <input type="file" id="avatarUpload" accept="image/*" style="display:none">
             <div class="online-status"></div>
         </div>
 
         <h1>Mohammadraza</h1>
-        <p class="subtitle">پنل شخصی و برنامه‌نویسی</p>
+        <p class="subtitle" data-i18n="subtitle">پنل شخصی و برنامه‌نویسی</p>
 
         <div class="stats-row">
             <div class="stat-box">
                 <span class="stat-value" id="visitCount">0</span>
-                <div class="stat-label">بازدید امروز</div>
+                <div class="stat-label" data-i18n="statToday">بازدید امروز</div>
             </div>
             <div class="stat-box">
                 <span class="stat-value" id="totalVisits">0</span>
-                <div class="stat-label">کل بازدیدها</div>
+                <div class="stat-label" data-i18n="statTotal">کل بازدیدها</div>
             </div>
             <div class="stat-box">
                 <span class="stat-value" id="musicCountStat">0</span>
-                <div class="stat-label">آهنگ‌ها</div>
+                <div class="stat-label" data-i18n="statSongs">آهنگ‌ها</div>
             </div>
         </div>
 
@@ -704,11 +795,11 @@
 
         <div class="bio-section">
             <div class="bio-card">
-                <h3>👋 درباره من</h3>
-                <p>من محمد رضا هستم، عاشق برنامه‌نویسی و مشغول پروژه‌های ساخت سایت و ربات تلگرام هستم. همیشه دنبال یادگیری چیزهای جدید و حل مسائل چالش‌برانگیز در دنیای فناوری هستم.</p>
+                <h3 data-i18n="about">👋 درباره من</h3>
+                <p data-i18n="aboutText">من محمد رضا هستم، عاشق برنامه‌نویسی و مشغول پروژه‌های ساخت سایت و ربات تلگرام هستم. همیشه دنبال یادگیری چیزهای جدید و حل مسائل چالش‌برانگیز در دنیای فناوری هستم.</p>
             </div>
             <div class="bio-card">
-                <h3>🛠️ مهارت‌های من</h3>
+                <h3 data-i18n="skills">🛠️ مهارت‌های من</h3>
                 <div class="skills-container">
                     <span class="skill-tag">Python 🐍</span>
                     <span class="skill-tag">Django 🌐</span>
@@ -719,59 +810,59 @@
                 </div>
             </div>
             <div class="bio-card">
-                <h3>❤️ علاقه‌مندی‌ها</h3>
-                <p>در اوقات فراغت به گیم، تماشای فیلم‌های علمی-تخیلی و کدنویسی پروژه‌های شخصی مشغولم.</p>
+                <h3 data-i18n="interests">❤️ علاقه‌مندی‌ها</h3>
+                <p data-i18n="interestsText">در اوقات فراغت به گیم، تماشای فیلم‌های علمی-تخیلی و کدنویسی پروژه‌های شخصی مشغولم.</p>
             </div>
         </div>
 
         <div class="music-section">
             <div class="section-header">
-                <h3>🎵 موسیقی‌های من <span class="music-count" id="musicCountBadge">0</span></h3>
+                <h3><span data-i18n="myMusic">🎵 موسیقی‌های من</span> <span class="music-count" id="musicCountBadge">0</span></h3>
             </div>
-            <input type="text" class="search-box" id="searchMusic" placeholder="🔍 جستجو در موسیقی‌ها...">
+            <input type="text" class="search-box" id="searchMusic" data-i18n-placeholder="searchMusic" placeholder="🔍 جستجو در موسیقی‌ها...">
             <div class="music-list" id="musicList">
-                <p class="loading-text">در حال بارگذاری موسیقی‌ها...</p>
+                <p class="loading-text" data-i18n="loadingMusic">در حال بارگذاری موسیقی‌ها...</p>
             </div>
         </div>
 
         <div class="links-container">
             <a href="https://t.me/kingok_2" target="_blank" class="link-btn btn-telegram">
-                ✈️ تلگرام (kingok_2)
+                <span data-i18n="telegram">✈️ تلگرام (kingok_2)</span>
             </a>
             <a href="https://wa.me/989000000000" target="_blank" class="link-btn btn-whatsapp">
-                💬 واتساپ (mohammadraza_22)
+                <span data-i18n="whatsapp">💬 واتساپ (mohammadraza_22)</span>
             </a>
             <a href="https://youtube.com/@Mohammadrazau4" target="_blank" class="link-btn btn-youtube">
-                ▶️ یوتیوب من
+                <span data-i18n="youtube">▶️ یوتیوب من</span>
             </a>
             
             <button id="contactBtn" class="link-btn btn-contact">
-                ✉️ تماس با من
+                <span data-i18n="contact">✉️ تماس با من</span>
             </button>
 
             <div class="contact-form" id="contactForm">
-                <h4>📝 پیام خود را بنویسید:</h4>
-                <input type="text" id="contactName" placeholder="نام شما">
-                <input type="email" id="contactEmail" placeholder="ایمیل شما">
-                <textarea id="contactMessage" rows="3" placeholder="متن پیام..."></textarea>
-                <button class="contact-submit" id="contactSubmit">📤 ارسال پیام</button>
+                <h4 data-i18n="contactTitle">📝 پیام خود را بنویسید:</h4>
+                <input type="text" id="contactName" data-i18n-placeholder="namePlaceholder" placeholder="نام شما">
+                <input type="email" id="contactEmail" data-i18n-placeholder="emailPlaceholder" placeholder="ایمیل شما">
+                <textarea id="contactMessage" rows="3" data-i18n-placeholder="messagePlaceholder" placeholder="متن پیام..."></textarea>
+                <button class="contact-submit" id="contactSubmit" data-i18n="sendBtn">📤 ارسال پیام</button>
             </div>
 
             <button id="shareBtn" class="link-btn btn-share">
-                🔗 اشتراک‌گذاری صفحه
+                <span data-i18n="shareBtn">🔗 اشتراک‌گذاری صفحه</span>
             </button>
         </div>
 
         <div class="footer">
-            © ۱۴۰۳ • ساخته شده با <span class="footer-heart">❤️</span>
+            <span data-i18n="footer">© ۱۴۰۳ • ساخته شده با</span> <span class="footer-heart">❤️</span>
         </div>
     </div>
 
     <div class="fab">
         <div class="fab-menu" id="fabMenu">
-            <button class="fab-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="بالا">⬆️</button>
-            <button class="fab-item" onclick="document.getElementById('searchMusic').focus()" title="جستجو">🔍</button>
-            <button class="fab-item" onclick="document.getElementById('shareBtn').click()" title="اشتراک‌گذاری">🔗</button>
+            <button class="fab-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Top">⬆️</button>
+            <button class="fab-item" onclick="document.getElementById('searchMusic').focus()" title="Search">🔍</button>
+            <button class="fab-item" onclick="document.getElementById('shareBtn').click()" title="Share">🔗</button>
         </div>
         <button class="fab-main" id="fabMain">+</button>
     </div>
@@ -779,6 +870,194 @@
     <div class="notification" id="notification"></div>
 
     <script>
+        // ============ سیستم چند زبانه (۴ زبان) ============
+        const translations = {
+            fa: {
+                subtitle: "پنل شخصی و برنامه‌نویسی",
+                statToday: "بازدید امروز",
+                statTotal: "کل بازدیدها",
+                statSongs: "آهنگ‌ها",
+                about: "👋 درباره من",
+                aboutText: "من محمد رضا هستم، عاشق برنامه‌نویسی و مشغول پروژه‌های ساخت سایت و ربات تلگرام هستم. همیشه دنبال یادگیری چیزهای جدید و حل مسائل چالش‌برانگیز در دنیای فناوری هستم.",
+                skills: "🛠️ مهارت‌های من",
+                interests: "❤️ علاقه‌مندی‌ها",
+                interestsText: "در اوقات فراغت به گیم، تماشای فیلم‌های علمی-تخیلی و کدنویسی پروژه‌های شخصی مشغولم.",
+                myMusic: "🎵 موسیقی‌های من",
+                searchMusic: "🔍 جستجو در موسیقی‌ها...",
+                telegram: "✈️ تلگرام (kingok_2)",
+                whatsapp: "💬 واتساپ (mohammadraza_22)",
+                youtube: "▶️ یوتیوب من",
+                contact: "✉️ تماس با من",
+                contactTitle: "📝 پیام خود را بنویسید:",
+                namePlaceholder: "نام شما",
+                emailPlaceholder: "ایمیل شما",
+                messagePlaceholder: "متن پیام...",
+                sendBtn: "📤 ارسال پیام",
+                shareBtn: "🔗 اشتراک‌گذاری صفحه",
+                footer: "© ۱۴۰۳ • ساخته شده با",
+                loadingMusic: "در حال بارگذاری موسیقی‌ها...",
+                noSong: "هیچ آهنگی یافت نشد.",
+                singer: "خواننده",
+                colorChanged: "🎨 رنگ تغییر یافت!",
+                copied: "✅ کپی شد: ",
+                notCopied: "❌ کپی نشد",
+                linkCopied: "✅ لینک کپی شد!",
+                notSupported: "❌ مرورگر پشتیبانی نمی‌کند",
+                fillForm: "⚠️ لطفاً نام و پیام را پر کنید",
+                msgSaved: "✅ پیام شما ذخیره شد!",
+                avatarChanged: "📷 آواتار تغییر کرد!",
+                langChanged: "🌐 زبان تغییر یافت!"
+            },
+            en: {
+                subtitle: "Personal & Programming Panel",
+                statToday: "Today Visits",
+                statTotal: "Total Visits",
+                statSongs: "Songs",
+                about: "👋 About Me",
+                aboutText: "I'm Mohammadreza, passionate about programming and working on website and Telegram bot projects. I'm always looking to learn new things and solve challenging problems in tech.",
+                skills: "🛠️ My Skills",
+                interests: "❤️ Interests",
+                interestsText: "In my free time, I enjoy gaming, watching sci-fi movies, and coding personal projects.",
+                myMusic: "🎵 My Music",
+                searchMusic: "🔍 Search music...",
+                telegram: "✈️ Telegram (kingok_2)",
+                whatsapp: "💬 WhatsApp (mohammadraza_22)",
+                youtube: "▶️ My YouTube",
+                contact: "✉️ Contact Me",
+                contactTitle: "📝 Write your message:",
+                namePlaceholder: "Your Name",
+                emailPlaceholder: "Your Email",
+                messagePlaceholder: "Your message...",
+                sendBtn: "📤 Send Message",
+                shareBtn: "🔗 Share Page",
+                footer: "© 2025 • Made with",
+                loadingMusic: "Loading music...",
+                noSong: "No songs found.",
+                singer: "Singer",
+                colorChanged: "🎨 Color changed!",
+                copied: "✅ Copied: ",
+                notCopied: "❌ Failed to copy",
+                linkCopied: "✅ Link copied!",
+                notSupported: "❌ Browser not supported",
+                fillForm: "⚠️ Please fill name and message",
+                msgSaved: "✅ Your message saved!",
+                avatarChanged: "📷 Avatar changed!",
+                langChanged: "🌐 Language changed!"
+            },
+            ar: {
+                subtitle: "لوحة شخصية وبرمجة",
+                statToday: "زيارات اليوم",
+                statTotal: "إجمالي الزيارات",
+                statSongs: "الأغاني",
+                about: "👋 عني",
+                aboutText: "أنا محمد رضا، شغوف بالبرمجة وأعمل على مشاريع بناء المواقع وبوتات تيليجرام. أبحث دائماً عن تعلم أشياء جديدة وحل المشكلات الصعبة في عالم التكنولوجيا.",
+                skills: "🛠️ مهاراتي",
+                interests: "❤️ اهتماماتي",
+                interestsText: "في وقت فراغي أستمتع بالألعاب ومشاهدة أفلام الخيال العلمي وبرمجة المشاريع الشخصية.",
+                myMusic: "🎵 موسيقاي",
+                searchMusic: "🔍 البحث في الموسيقى...",
+                telegram: "✈️ تيليجرام (kingok_2)",
+                whatsapp: "💬 واتساب (mohammadraza_22)",
+                youtube: "▶️ قناتي على يوتيوب",
+                contact: "✉️ اتصل بي",
+                contactTitle: "📝 اكتب رسالتك:",
+                namePlaceholder: "اسمك",
+                emailPlaceholder: "بريدك الإلكتروني",
+                messagePlaceholder: "رسالتك...",
+                sendBtn: "📤 إرسال الرسالة",
+                shareBtn: "🔗 مشاركة الصفحة",
+                footer: "© ٢٠٢٥ • صُنع بـ",
+                loadingMusic: "جاري تحميل الموسيقى...",
+                noSong: "لم يتم العثور على أغاني.",
+                singer: "المغني",
+                colorChanged: "🎨 تم تغيير اللون!",
+                copied: "✅ تم النسخ: ",
+                notCopied: "❌ فشل النسخ",
+                linkCopied: "✅ تم نسخ الرابط!",
+                notSupported: "❌ المتصفح غير مدعوم",
+                fillForm: "⚠️ يرجى ملء الاسم والرسالة",
+                msgSaved: "✅ تم حفظ رسالتك!",
+                avatarChanged: "📷 تم تغيير الصورة!",
+                langChanged: "🌐 تم تغيير اللغة!"
+            },
+            ru: {
+                subtitle: "Персональная и программная панель",
+                statToday: "Посещения сегодня",
+                statTotal: "Всего посещений",
+                statSongs: "Песни",
+                about: "👋 Обо мне",
+                aboutText: "Я Мохаммадреза, увлечен программированием и работаю над проектами создания сайтов и Telegram-ботов. Всегда стремлюсь изучать новое и решать сложные задачи в мире технологий.",
+                skills: "🛠️ Мои навыки",
+                interests: "❤️ Интересы",
+                interestsText: "В свободное время я люблю играть в игры, смотреть научно-фантастические фильмы и программировать личные проекты.",
+                myMusic: "🎵 Моя музыка",
+                searchMusic: "🔍 Поиск музыки...",
+                telegram: "✈️ Telegram (kingok_2)",
+                whatsapp: "💬 WhatsApp (mohammadraza_22)",
+                youtube: "▶️ Мой YouTube",
+                contact: "✉️ Связаться со мной",
+                contactTitle: "📝 Напишите ваше сообщение:",
+                namePlaceholder: "Ваше имя",
+                emailPlaceholder: "Ваш Email",
+                messagePlaceholder: "Ваше сообщение...",
+                sendBtn: "📤 Отправить",
+                shareBtn: "🔗 Поделиться",
+                footer: "© 2025 • Сделано с",
+                loadingMusic: "Загрузка музыки...",
+                noSong: "Песни не найдены.",
+                singer: "Исполнитель",
+                colorChanged: "🎨 Цвет изменен!",
+                copied: "✅ Скопировано: ",
+                notCopied: "❌ Ошибка копирования",
+                linkCopied: "✅ Ссылка скопирована!",
+                notSupported: "❌ Браузер не поддерживается",
+                fillForm: "⚠️ Заполните имя и сообщение",
+                msgSaved: "✅ Сообщение сохранено!",
+                avatarChanged: "📷 Аватар изменен!",
+                langChanged: "🌐 Язык изменен!"
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'fa';
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+            // RTL for Arabic and Persian, LTR for English and Russian
+            document.documentElement.dir = (lang === 'fa' || lang === 'ar') ? 'rtl' : 'ltr';
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+            
+            // Update active state in lang menu
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.lang === lang);
+            });
+            
+            // Update flag icon
+            const flags = { fa: '🇮🇷', en: '🇬🇧', ar: '🇸🇦', ru: '🇷🇺' };
+            document.getElementById('langBtn').textContent = flags[lang];
+            
+            updateDateTime();
+            loadMusic(document.getElementById('searchMusic').value);
+        }
+
         // ============ نوتیفیکیشن ============
         function showNotification(message) {
             const notif = document.getElementById('notification');
@@ -786,6 +1065,30 @@
             notif.classList.add('show');
             setTimeout(() => notif.classList.remove('show'), 2500);
         }
+
+        // ============ دکمه زبان ============
+        const langBtn = document.getElementById('langBtn');
+        const langMenu = document.getElementById('langMenu');
+
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                applyLanguage(opt.dataset.lang);
+                langMenu.classList.remove('active');
+                showNotification(t('langChanged'));
+            });
+        });
+
+        // بستن منو با کلیک بیرون
+        document.addEventListener('click', (e) => {
+            if (!langMenu.contains(e.target) && e.target !== langBtn) {
+                langMenu.classList.remove('active');
+            }
+        });
 
         // ============ ۱. حالت تاریک / روشن ============
         const themeToggle = document.getElementById('themeToggle');
@@ -813,7 +1116,8 @@
         const savedColor = localStorage.getItem('colorTheme') || 'default';
         if (savedColor !== 'default') body.classList.add(`theme-${savedColor}`);
 
-        colorBtn.addEventListener('click', () => {
+        colorBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             colorPalette.classList.toggle('active');
         });
 
@@ -826,16 +1130,18 @@
                 body.classList.remove(...themes);
                 if (color !== 'default') body.classList.add(`theme-${color}`);
                 localStorage.setItem('colorTheme', color);
-                showNotification('🎨 رنگ تغییر یافت!');
+                showNotification(t('colorChanged'));
             });
         });
 
         // ============ ۳. ساعت و تاریخ ============
         function updateDateTime() {
             const now = new Date();
+            const locales = { fa: 'fa-IR', en: 'en-US', ar: 'ar-SA', ru: 'ru-RU' };
+            const locale = locales[currentLang] || 'en-US';
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateStr = now.toLocaleDateString('fa-IR', options);
-            const timeStr = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+            const dateStr = now.toLocaleDateString(locale, options);
+            const timeStr = now.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
             document.getElementById('datetime').textContent = `⏰ ${dateStr} - ${timeStr}`;
         }
         updateDateTime();
@@ -870,7 +1176,7 @@
                     avatar.style.backgroundImage = `url(${event.target.result})`;
                     document.getElementById('avatarEmoji').style.display = 'none';
                     localStorage.setItem('avatarImage', event.target.result);
-                    showNotification('📷 آواتار تغییر کرد!');
+                    showNotification(t('avatarChanged'));
                 };
                 reader.readAsDataURL(file);
             }
@@ -888,9 +1194,9 @@
                 const text = chip.dataset.copy;
                 try {
                     await navigator.clipboard.writeText(text);
-                    showNotification('✅ کپی شد: ' + text);
+                    showNotification(t('copied') + text);
                 } catch(err) {
-                    showNotification('❌ کپی نشد');
+                    showNotification(t('notCopied'));
                 }
             });
         });
@@ -898,8 +1204,10 @@
         // ============ ۷. اشتراک‌گذاری ============
         document.getElementById('shareBtn').addEventListener('click', async () => {
             const shareData = {
-                title: 'Mohammadraza | پنل شخصی',
-                text: 'صفحه من را ببینید!',
+                title: 'Mohammadraza | Personal Panel',
+                text: currentLang === 'fa' ? 'صفحه من را ببینید!' : 
+                      currentLang === 'en' ? 'Check out my page!' :
+                      currentLang === 'ar' ? 'شاهد صفحتي!' : 'Посмотрите мою страницу!',
                 url: window.location.href
             };
             if (navigator.share) {
@@ -907,9 +1215,9 @@
             } else {
                 try {
                     await navigator.clipboard.writeText(window.location.href);
-                    showNotification('✅ لینک کپی شد!');
+                    showNotification(t('linkCopied'));
                 } catch (err) {
-                    showNotification('❌ مرورگر پشتیبانی نمی‌کند');
+                    showNotification(t('notSupported'));
                 }
             }
         });
@@ -927,7 +1235,7 @@
             const message = document.getElementById('contactMessage').value.trim();
             
             if (!name || !message) {
-                showNotification('⚠️ لطفاً نام و پیام را پر کنید');
+                showNotification(t('fillForm'));
                 return;
             }
             
@@ -939,7 +1247,7 @@
             document.getElementById('contactEmail').value = '';
             document.getElementById('contactMessage').value = '';
             
-            showNotification('✅ پیام شما ذخیره شد!');
+            showNotification(t('msgSaved'));
             contactForm.classList.remove('active');
         });
 
@@ -953,14 +1261,14 @@
 
         // ============ ۱۰. موسیقی ============
         const myMusicList = [
-            { title: "آهنگ بلوچ ۱", artist: "خواننده", file: "balooch1.mp3" },
-            { title: "آهنگ بلوچ ۲", artist: "خواننده", file: "balooch2.mp3" },
-            { title: "آهنگ سوم", artist: "خواننده", file: "sab.mp3" },
-            { title: "آروم", artist: "خواننده", file: "Arom.mp3" },
-            { title: "دلبری", artist: "خواننده", file: "dalbari.mp3" },
-            { title: "عمانی", artist: "خواننده", file: "OmaniN.mp3" },
-            { title: "اُمین", artist: "خواننده", file: "Ominn.mp3" },
-            { title: "رومان", artist: "خواننده", file: "Roman.mp3" }
+            { title: "آهنگ بلوچ ۱", file: "balooch1.mp3" },
+            { title: "آهنگ بلوچ ۲", file: "balooch2.mp3" },
+            { title: "آهنگ سوم", file: "sab.mp3" },
+            { title: "آروم", file: "Arom.mp3" },
+            { title: "دلبری", file: "dalbari.mp3" },
+            { title: "عمانی", file: "OmaniN.mp3" },
+            { title: "اُمین", file: "Ominn.mp3" },
+            { title: "رومان", file: "Roman.mp3" }
         ];
 
         const musicListContainer = document.getElementById('musicList');
@@ -972,12 +1280,11 @@
         function loadMusic(filter = '') {
             musicListContainer.innerHTML = '';
             const filtered = myMusicList.filter(song => 
-                song.title.toLowerCase().includes(filter.toLowerCase()) ||
-                song.artist.toLowerCase().includes(filter.toLowerCase())
+                song.title.toLowerCase().includes(filter.toLowerCase())
             );
             
             if (filtered.length === 0) {
-                musicListContainer.innerHTML = '<p class="loading-text">هیچ آهنگی یافت نشد.</p>';
+                musicListContainer.innerHTML = `<p class="loading-text">${t('noSong')}</p>`;
                 return;
             }
 
@@ -987,13 +1294,13 @@
                 musicItem.innerHTML = `
                     <div class="music-info">
                         <p class="music-title">${song.title}</p>
-                        <p class="music-artist">${song.artist}</p>
+                        <p class="music-artist">${t('singer')}</p>
                     </div>
                     <div class="music-player-row">
                         <audio controls class="music-player">
                             <source src="${song.file}" type="audio/mpeg">
                         </audio>
-                        <a href="${song.file}" download="${song.title}.mp3" class="download-btn" title="دانلود">⬇</a>
+                        <a href="${song.file}" download="${song.title}.mp3" class="download-btn" title="Download">⬇</a>
                     </div>
                 `;
                 musicListContainer.appendChild(musicItem);
@@ -1001,7 +1308,6 @@
         }
 
         searchMusic.addEventListener('input', (e) => loadMusic(e.target.value));
-        loadMusic();
 
         // ============ ۱۱. ثبت Service Worker (PWA) ============
         if ('serviceWorker' in navigator) {
@@ -1011,6 +1317,9 @@
                     .catch(err => console.log('❌ خطا:', err));
             });
         }
+
+        // ============ راه‌اندازی اولیه ============
+        applyLanguage(currentLang);
     </script>
 </body>
     </html>
