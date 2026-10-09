@@ -1,12 +1,12 @@
 [
   { "title": "آروم", "file": "Arom.mp3" },
-  { "title": "آهنگ بلوچ ۱", "file": "balooch1.mp3" },
-  { "title": "آهنگ بلوچ ۲", "file": "balooch2.mp3" },
   { "title": "دلبری", "file": "dalbari.mp3" },
-  { "title": "مطلب", "file": "matlab.mp3" },
   { "title": "نازنین عمر", "file": "Nazanhomr.mp3" },
   { "title": "عمانی", "file": "OmaniN.mp3" },
-  { "title": "آهنگ سوم", "file": "sab.mp3" },
-  { "title": "ضبط ۱", "file": "XRecorder_20261003_05_31_22_26.mp3" },
-  { "title": "ضبط ۲", "file": "XRecorder_20261006_03_61_20_26.mp3" }
+  { "title": "تی زیبایی", "file": "تی زیبایی.mp3" },
+  { "title": "جانی منی", "file": "جانی منی.mp3" },
+  { "title": "شبم ماه روی", "file": "شبم ماه روی.mp3" },
+  { "title": "ماه روی بام", "file": "ماه روی بام.mp3" },
+  { "title": "چمان خمار", "file": "چمان خمار.mp3" },
+  { "title": "یه خندت رسید فارسی", "file": "یه خندت رسید فارسی.mp3" }
 ]
