@@ -294,7 +294,6 @@
         </div>
 
         <div class="bio-section">
-            <!-- متن درباره من اینجا آپدیت شده است -->
             <div class="bio-card"><h3 data-i18n="about">👋 درباره من</h3><p data-i18n="aboutText">من محمد رضا هستم، عاشق برنامه‌نویسی و مشغول پروژه‌های ساخت سایت و ربات تلگرام هستم. من به ساخت موزیک با هوش مصنوعی (AI) هم علاقه‌مندم و در همین سبک‌ها و مایه‌ها آهنگ می‌سازم. همیشه دنبال یادگیری چیزهای جدید و حل مسائل چالش‌برانگیز در دنیای برنامه‌نویسی و فناوری هستم.</p></div>
             <div class="bio-card"><h3 data-i18n="skills">🛠️ مهارت‌های من</h3><div class="skills-container"><span class="skill-tag">Python 🐍</span><span class="skill-tag">Django 🌐</span><span class="skill-tag">HTML/CSS 🎨</span><span class="skill-tag">JavaScript ⚡</span><span class="skill-tag">Telegram Bots 🤖</span><span class="skill-tag">UI/UX ✨</span></div></div>
             <div class="bio-card"><h3 data-i18n="interests">❤️ علاقه‌مندی‌ها</h3><p data-i18n="interestsText">در اوقات فراغت به گیم، تماشای فیلم‌های علمی-تخیلی و کدنویسی مشغولم.</p></div>
@@ -558,7 +557,7 @@
                 musicItem.innerHTML = `
                     <div class="music-info">
                         <p class="music-title">${song.title}</p>
-                        <p class="music-artist">${t('singer')}</p>
+                        <p class="music-artist">${song.artist || t('singer')}</p>
                     </div>
                     <div class="music-player-row">
                         <audio controls class="music-player">
