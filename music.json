@@ -1,12 +1,14 @@
 [
-  { "title": "آروم", "file": "Arom.mp3" },
-  { "title": "دلبری", "file": "dalbari.mp3" },
-  { "title": "نازنین عمر", "file": "Nazanhomr.mp3" },
-  { "title": "عمانی", "file": "OmaniN.mp3" },
-  { "title": "تی زیبایی", "file": "تی زیبایی.mp3" },
-  { "title": "جانی منی", "file": "جانی منی.mp3" },
-  { "title": "شبم ماه روی", "file": "شبم ماه روی.mp3" },
-  { "title": "ماه روی بام", "file": "ماه روی بام.mp3" },
-  { "title": "چمان خمار", "file": "چمان خمار.mp3" },
-  { "title": "یه خندت رسید فارسی", "file": "یه خندت رسید فارسی.mp3" }
+  { "title": "آروم", "file": "Arom.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "دلبری", "file": "dalbari.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "نازنین عمر", "file": "Nazanhomr.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "عمانی", "file": "OmaniN.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "تی زیبایی", "file": "تی زیبایی.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "جانی منی", "file": "جانی منی.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "شبم ماه روی", "file": "شبم ماه روی.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "ماه روی بام", "file": "ماه روی بام.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "چمان خمار", "file": "چمان خمار.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "یه خندت رسید فارسی", "file": "یه خندت رسید فارسی.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "یک دل یک جان بلوچی", "file": "یک دل یک جان بلوچی.mp3", "artist": "Ai baloochi:@mohammadrazau4" },
+  { "title": "یک دل یکجان بلوچی ۲", "file": "یک دل یکجان بلوچی 2.mp3", "artist": "Ai baloochi:@mohammadrazau4" }
 ]
